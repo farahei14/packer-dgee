@@ -2,8 +2,8 @@
 	"variables":{
 		"ssh_name": "root",
 		"ssh_pass": "vmware",
-		"hostname": "centos-6",
-      "disk_size": "20480",
+		"hostname": "centos6",
+      "disk_size": "26624",
       "kickstart": "centos6-prod.kickstart",
       "iso_link": "/home/jho/Bureau/iso/CentOS-6.6-x86_64-minimal.iso",
       "iso_checksum": "eb3c8be6ab668e6d83a118323a789e6c",
@@ -25,8 +25,8 @@
 				"vm_name": "{{user `hostname`}}",
 				"guest_os_type": "centos-64",
 				"http_directory": "http",
-				"ssh_username": "root",
-				"ssh_password": "vmware",
+				"ssh_username": "{{user `ssh_name`}}",
+				"ssh_password": "{{user `ssh_pass`}}",
 				"ssh_port": 22,
 				"ssh_wait_timeout": "1200s",
 				"shutdown_command": "/sbin/shutdown -hP now",
@@ -41,7 +41,7 @@
 			"vmware-iso": {
 				"scripts": [
 					"scripts/centos/base.sh",
-					"scripts/centos/vmware-tools2.sh",
+					"scripts/centos/vmware-tools.sh",
 					"scripts/centos/clean.sh"
 				]
 			}

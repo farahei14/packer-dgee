@@ -21,14 +21,14 @@ clearpart --all --drives=sda
 
 part /boot --fstype=ext4 --size=500
 part pv.008002 --grow --size=1
-part swap --asprimary --size=2048
+part swap --asprimary --size=6144
 
 volgroup vg_localhost --pesize=4096 pv.008002
-logvol /home --fstype=ext4 --name=LogVol_home --vgname=vg_localhost --size=1024
+logvol /home --fstype=ext4 --name=LogVol_home --vgname=vg_localhost --size=1024 --grow 
 logvol / --fstype=ext4 --name=LogVol_root --vgname=vg_localhost --size=4096
-logvol /tmp --fstype=ext4 --name=LogVol_tmp --vgname=vg_localhost --size=2048
-logvol /usr --fstype=ext4 --name=LogVol_usr --vgname=vg_localhost --size=6664
-logvol /var --fstype=ext4 --name=LogVol_var --vgname=vg_localhost --size=4096
+logvol /tmp --fstype=ext4 --name=LogVol_tmp --vgname=vg_localhost --size=2048 --grow --maxsize=4096
+logvol /usr --fstype=ext4 --name=LogVol_usr --vgname=vg_localhost --size=6664 --grow --maxsize=8192
+logvol /var --fstype=ext4 --name=LogVol_var --vgname=vg_localhost --size=4096 --grow --maxsize=8192
 
 firstboot --disabled
 reboot
