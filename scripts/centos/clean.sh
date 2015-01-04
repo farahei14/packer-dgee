@@ -21,3 +21,6 @@ rm -f /etc/ssh/*key*
 # Delete root shell history
 rm -f /root/.bash_history
 
+# Delete some unused files in /root
+rm -f /root/anaconda-ks.cfg
+rm -fr /root/install.log*
