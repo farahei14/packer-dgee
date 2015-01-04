@@ -42,6 +42,7 @@
 				"scripts": [
 					"scripts/centos/base.sh",
 					"scripts/centos/vmware-tools.sh",
+					"scripts/centos/zero-disk.sh",
 					"scripts/centos/clean.sh"
 				]
 			}
