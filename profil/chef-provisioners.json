@@ -1,0 +1,3 @@
+{
+	"provisioners": "chef-client.sh"
+}
