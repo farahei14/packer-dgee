@@ -1,0 +1,70 @@
+{
+  "variables":{
+    "ssh_name": "root",
+    "ssh_pass": "vmware",
+    "hostname": "centos6",
+      "disk_size": "26624",
+      "kickstart": "centos6-prod.kickstart",
+      "iso_link": "c:\\dgee\\CentOS-6.iso",
+      "iso_checksum": "eb3c8be6ab668e6d83a118323a789e6c",
+      "iso_checksum_type": "md5",
+      "provisioners": "provisioners.sh"
+  },
+
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `kickstart`}} <enter><wait>"
+      ],
+      "boot_wait": "6s",
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+      "disk_size": "{{user `disk_size`}}",
+      "iso_url": "{{user `iso_link`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "vm_name": "{{user `hostname`}}",
+      "ssh_username": "{{user `ssh_name`}}",
+      "ssh_password": "{{user `ssh_pass`}}",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "/sbin/shutdown -hP now",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "virtualbox_version_file": ".vbox_version",
+      "vboxmanage": [
+        [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
+      ]
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'",
+      "override": {
+        "virtualbox-iso": {
+          "scripts": [
+          "scripts/centos/base.sh",
+          "scripts/centos/vagrant.sh",
+          "scripts/centos/{{ user `provisioners` }}",
+          "scripts/centos/zero-disk.sh",
+          "scripts/centos/clean.sh"
+          ]
+        }
+      }
+    }
+  ],
+
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "override": {
+        "virtualbox": {
+          "output": "centos-6-dev-virtualbox.box"
+        }
+      }
+    }
+  ]
+}
