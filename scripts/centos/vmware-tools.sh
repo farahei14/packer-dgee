@@ -28,13 +28,13 @@ yes
 /usr/share/doc/vmware-tools
 yes
 yes
-no
-no
+yes
+yes
 no
 no
 EOF
 
 echo "Cleaning up ${VMWARE_TOOLS_ISO} and ${VMWARE_TOOLS_TMP}"
-rm ${VMWARE_TOOLS_ISO}
+#rm ${VMWARE_TOOLS_ISO}
 rm -rf ${VMWARE_TOOLS_TMP}
 

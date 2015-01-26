@@ -5,7 +5,7 @@
 		"hostname": "centos6",
       "disk_size": "26624",
       "kickstart": "centos6-prod.kickstart",
-      "iso_link": "/home/jho/Bureau/iso/CentOS-6.6-x86_64-minimal.iso",
+      "iso_link": "c:\\dgee\\CentOS-6.iso",
       "iso_checksum": "eb3c8be6ab668e6d83a118323a789e6c",
       "iso_checksum_type": "md5"
 

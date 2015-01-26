@@ -32,7 +32,13 @@ logvol /var --fstype=ext4 --name=LogVol_var --vgname=vg_localhost --size=4096 --
 
 firstboot --disabled
 reboot
+user --name=vagrant --plaintext --password vagrant
 
 %packages --nobase
 @core
 %end
+
+%post
+# sudo
+echo "%vagrant ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/vagrant
+sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
