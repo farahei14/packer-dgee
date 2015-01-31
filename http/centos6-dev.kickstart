@@ -36,9 +36,30 @@ user --name=vagrant --plaintext --password vagrant
 
 %packages --nobase
 @core
+openssh-clients
+sudo
+gcc
+kernel-devel
+kernel-headers
+make
+perl
+curl
+wget
+
+
 %end
 
 %post
+yum -y update
+
+mkdir -m 0700 -p /home/vagrant/.ssh
+curl https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub >> /home/vagrant/.ssh/authorized_keys
+chmod 600 /home/vagrant/.ssh/authorized_keys
+chown -R vagrant:vagrant /home/vagrant/.ssh
+
 # sudo
-echo "%vagrant ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/vagrant
-sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
+ echo -e "vagrant ALL=(ALL)  NOPASSWD: ALL\nDefaults: vagrant !requiretty" > /etc/sudoers.d/vagrant
+ chmod 0440 /etc/sudoers.d/vagrant
+
+ yum -y kernel-devel kernel-headers
+

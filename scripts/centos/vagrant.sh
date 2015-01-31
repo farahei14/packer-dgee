@@ -9,6 +9,6 @@ chmod 600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant:vagrant /home/vagrant/.ssh
 
 # allow vagrant to ssh and send sudo command
-echo -e "vagrant ALL=(ALL) NOPASSWD: ALL\nDefaults: vagrant !requiretty" > /etc/sudoers.d/vagrant_conf
-chmod 0440 /etc/sudoers.d/vagrant_conf
+echo -e "vagrant ALL=(ALL) NOPASSWD: ALL\nDefaults: vagrant !requiretty" > /etc/sudoers.d/vagrant
+chmod 0440 /etc/sudoers.d/vagrant
 

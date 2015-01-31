@@ -2,6 +2,8 @@ yum check-update
 yum -y update
 yum install -y vim-enhanced
 yum install -y bc
-#sed -i -e '/Defaults\s\+env_reset/a Defaults\texempt_group=sudo' /etc/sudoers
-#sed -i -e 's/%sudo ALL=(ALL:ALL) ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
+
+# Set Selinux on permissive
+sed -i -e 's/^SELINUX=.*/SELINUX=permissive/' /etc/selinux/config
+
 echo "UseDNS no" >> /etc/ssh/sshd_config

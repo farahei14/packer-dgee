@@ -47,7 +47,7 @@
 				"scripts": [
 					"scripts/centos/base.sh",
 					"scripts/centos/epel.sh",
-					"scripts/centos/vagrant.sh",
+					"scripts/centos/virtualbox-tools.sh",
 					"scripts/centos/{{ user `provisioners` }}",
 					"scripts/centos/zero-disk.sh",
 					"scripts/centos/clean.sh"
