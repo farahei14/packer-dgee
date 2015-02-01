@@ -34,19 +34,22 @@ firstboot --disabled
 reboot
 user --name=vagrant --plaintext --password vagrant
 
+# ajout depot epel
+repo --name=epel --baseurl=http://ftp.osuosl.org/pub/fedora-epel/6/x86_64/
+
 %packages --nobase
 @core
 openssh-clients
 sudo
-make
 perl
 curl
 wget
+dkms
 %end
-%post --log=/root/post-install.log
-yum -y update
-yum -y install gcc kernel-devel kernel-headers
 
+%post --log=/root/post-install.log
+
+# vagrant setting
 mkdir -m 0700 -p /home/vagrant/.ssh
 curl https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub >> /home/vagrant/.ssh/authorized_keys
 chmod 600 /home/vagrant/.ssh/authorized_keys

@@ -29,3 +29,6 @@ do
       lvremove -f /dev/$j/zero
    fi
 done
+
+# Delete root shell history
+rm -f /root/.bash_history
