@@ -15,4 +15,4 @@ echo "Cleaning up ${VIRTUALBOX_TOOLS_ISO}"
 rm ${VIRTUALBOX_TOOLS_ISO}
 
 # supprime les paquets de compilation installer par kickstart
-yum -y remove gcc cpp kernel-devel kernel-headers
+#yum -y remove gcc cpp kernel-devel kernel-headers

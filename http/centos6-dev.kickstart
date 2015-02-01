@@ -38,19 +38,14 @@ user --name=vagrant --plaintext --password vagrant
 @core
 openssh-clients
 sudo
-gcc
-kernel-devel
-kernel-headers
 make
 perl
 curl
 wget
-
-
 %end
-
-%post
+%post --log=/root/post-install.log
 yum -y update
+yum -y install gcc kernel-devel kernel-headers
 
 mkdir -m 0700 -p /home/vagrant/.ssh
 curl https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub >> /home/vagrant/.ssh/authorized_keys
@@ -58,8 +53,5 @@ chmod 600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant:vagrant /home/vagrant/.ssh
 
 # sudo
- echo -e "vagrant ALL=(ALL)  NOPASSWD: ALL\nDefaults: vagrant !requiretty" > /etc/sudoers.d/vagrant
- chmod 0440 /etc/sudoers.d/vagrant
-
- yum -y kernel-devel kernel-headers
-
+echo -e "vagrant ALL=(ALL)  NOPASSWD: ALL\nDefaults: vagrant !requiretty" > /etc/sudoers.d/vagrant
+chmod 0440 /etc/sudoers.d/vagrant

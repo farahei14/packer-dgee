@@ -23,4 +23,4 @@ rm -f /root/.bash_history
 
 # Delete some unused files in /root
 rm -f /root/anaconda-ks.cfg
-rm -fr /root/install.log*
+rm -fr /root/*.log*
