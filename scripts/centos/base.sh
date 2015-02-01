@@ -1,3 +1,7 @@
+# date la generation de l'image
+date > /etc/box_create_time
+chmod 700 /etc/box_create_time
+
 yum check-update
 yum -y update
 yum install -y vim-enhanced
