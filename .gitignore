@@ -1,5 +1,7 @@
-*.iso
+.vagrant
 output-vmware-iso
 packer_cache
+ansible
+*.iso
 *.ova
 *.box
