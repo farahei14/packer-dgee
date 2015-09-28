@@ -5,3 +5,4 @@ ansible
 *.iso
 *.ova
 *.box
+VMwareTools*.tar.gz

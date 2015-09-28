@@ -33,6 +33,15 @@ logvol /var --fstype=ext4 --name=LogVol_var --vgname=vg_localhost --size=4096 --
 firstboot --disabled
 reboot
 
+# ajout depot epel
+repo --name=epel --baseurl=http://ftp.osuosl.org/pub/fedora-epel/6/x86_64/
+
 %packages --nobase
 @core
+openssh-clients
+sudo
+perl
+curl
+wget
+dkms
 %end
